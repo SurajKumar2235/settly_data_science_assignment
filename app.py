@@ -3,10 +3,8 @@ from sklearn.preprocessing import LabelEncoder
 import pickle
 import tensorflow as tf
 import numpy as np
-from tensorflow.keras.preprocessing.text import Tokenizer
+import keras
 
-# from keras.preprocessing.text import Tokenizer
-from keras.preprocessing.text import Tokenizer
 from keras.models import load_model
 
 from keras.preprocessing.sequence import pad_sequences
@@ -23,7 +21,7 @@ with open('tokenizer.pickle', 'rb') as handle:
     tokenizer = pickle.load(handle)
 app = FastAPI()
 
-@app.get("/predict_internal_status/")
+@app.get("/pos/")
 async def predict_internal_status(user_input: str):
     # Tokenize the user input
     user_input_sequence = tokenizer.texts_to_sequences([user_input])
